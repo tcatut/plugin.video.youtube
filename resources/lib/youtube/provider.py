@@ -8,7 +8,7 @@ from resources.lib.kodion.utils import FunctionCache
 from resources.lib.kodion.items import *
 from resources.lib.youtube.client import YouTube
 from .helper import v3, ResourceManager, yt_specials, yt_playlist, yt_login, yt_setup_wizard, yt_video, \
-    yt_context_menu, yt_play, yt_old_actions
+    yt_context_menu, yt_play, yt_old_actions, yt_activities
 from .youtube_exceptions import YouTubeException, LoginException
 
 
@@ -59,7 +59,8 @@ class Provider(kodion.AbstractProvider):
                  'youtube.video.rate.none': 30108,
                  'youtube.video.play_with': 30540,
                  'youtube.live': 30539,
-                 'youtube.error.rtmpe_not_supported': 30542}
+                 'youtube.error.rtmpe_not_supported': 30542,
+                 'youtube.activities': 30544,}
 
     def __init__(self):
         kodion.AbstractProvider.__init__(self)
@@ -318,6 +319,11 @@ class Provider(kodion.AbstractProvider):
         method = re_match.group('method')
         return yt_subscriptions.process(method, self, context, re_match)
 
+    @kodion.RegisterProviderPath('^/activities/(?P<method>.*)/$')
+    def _on_activities(self, context, re_match):
+        method = re_match.group('method')
+        return yt_activities.process(method, self, context, re_match)
+
     @kodion.RegisterProviderPath('^/special/(?P<category>.*)/$')
     def _on_yt_specials(self, context, re_match):
         result = []
@@ -439,6 +445,16 @@ class Provider(kodion.AbstractProvider):
                 context.create_resource_path('media', 'new_uploads.png'))
             my_subscriptions_item.set_fanart(self.get_fanart(context))
             result.append(my_subscriptions_item)
+            pass
+
+        if self.is_logged_in() and settings.get_bool('youtube.folder.activities.show', True):
+            # recommended
+            recommended_item = DirectoryItem(
+                context.localize(self.LOCAL_MAP['youtube.activities']),
+                context.create_uri(['activities', 'list']),
+                context.create_resource_path('media', 'popular.png'))
+            recommended_item.set_fanart(self.get_fanart(context))
+            result.append(recommended_item)
             pass
 
         # what to watch

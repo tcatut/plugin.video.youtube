@@ -78,9 +78,13 @@ class TestClient(unittest.TestCase):
         json_data = client.generate_user_code()
         pass
 
+    def test_activites(self):
+        client = YouTube(language='de-DE')
+        json_data = client.get_activities('home')
+        pass
+
     def test_popular_videos(self):
         client = YouTube(language='de-DE')
-
         json_data = client.get_popular_videos()
         pass
 
