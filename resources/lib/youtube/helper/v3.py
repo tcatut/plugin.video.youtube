@@ -237,6 +237,9 @@ def _process_list_response(provider, context, json_data):
             else:
                 raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
             pass
+        # Activity response with home=true is how to get "Recommended" items.
+        # Need to ignore anything that's not a video response.
+        # Need to ignore duplicate videos.
         elif yt_kind == 'youtube#activity':
             snippet = yt_item['snippet']
             type = snippet['type']
@@ -244,67 +247,8 @@ def _process_list_response(provider, context, json_data):
                 yt_item = yt_item['contentDetails']['bulletin']['resourceId']
                 yt_kind = yt_item['kind']
                 if yt_kind == 'youtube#channel':
-                    channel_id = yt_item['channelId']
-                    title = snippet['title']
-                    image = snippet.get('thumbnails', {}).get('medium', {}).get('url', '')
-
-                    channel_item = items.DirectoryItem(title,
-                                                       context.create_uri(['channel', channel_id]),
-                                                       image=image)
-                    channel_item.set_fanart(provider.get_fanart(context))
-
-                    # subscribe to the channel
-                    if provider.is_logged_in():
-                        context_menu = []
-                        yt_context_menu.append_subscribe_to_channel(context_menu, provider, context, channel_id)
-                        channel_item.set_context_menu(context_menu)
-                        pass
-
-                    result.append(channel_item)
-
-                    # map channel
-                    if not channel_id in channel_id_dict:
-                        channel_id_dict[channel_id] = []
-                    channel_id_dict[channel_id].append(channel_item)
                     pass
                 elif yt_kind == 'youtube#playlist':
-                    playlist_id = yt_item['playlistId']
-                    title = snippet['title']
-                    image = snippet.get('thumbnails', {}).get('medium', {}).get('url', '')
-
-                    channel_id = snippet['channelId']
-                    # if the path directs to a playlist of our own, we correct the channel id to 'mine'
-                    if context.get_path() == '/channel/mine/playlists/':
-                        channel_id = 'mine'
-                        pass
-                    channel_name = snippet.get('channelTitle', '')
-                    playlist_item = items.DirectoryItem(title,
-                                                        context.create_uri(
-                                                            ['channel', channel_id, 'playlist', playlist_id]),
-                                                        image=image)
-                    playlist_item.set_fanart(provider.get_fanart(context))
-
-
-                    context_menu = []
-
-                    # play all videos of the playlist
-                    yt_context_menu.append_play_all_from_playlist(context_menu, provider, context, playlist_id)
-
-                    if provider.is_logged_in():
-                        # subscribe to the channel of the playlist
-                        yt_context_menu.append_subscribe_to_channel(context_menu, provider, context, channel_id,
-                                                                    channel_name)
-                        pass
-                    if len(context_menu) > 0:
-                        playlist_item.set_context_menu(context_menu)
-                        pass
-
-                    result.append(playlist_item)
-
-                    # map playlist to channel
-                    if not channel_id in channel_id_dict:
-                        channel_id_dict[channel_id] = []
-                    channel_id_dict[channel_id].append(playlist_item)
                     pass
                 elif yt_kind == 'youtube#video':
                     video_id = yt_item['videoId']
@@ -314,61 +258,20 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
             elif type == 'channelItem':
-                channel_id = snippet['channelId']
-                title = snippet['title']
-                image = snippet.get('thumbnails', {}).get('medium', {}).get('url', '')
-
-                channel_item = items.DirectoryItem(title,
-                                                   context.create_uri(['channel', channel_id]),
-                                                   image=image)
-                channel_item.set_fanart(provider.get_fanart(context))
-
-                # subscribe to the channel
-                if provider.is_logged_in():
-                    context_menu = []
-                    yt_context_menu.append_subscribe_to_channel(context_menu, provider, context, channel_id)
-                    channel_item.set_context_menu(context_menu)
-                    pass
-
-                result.append(channel_item)
-
-                # map channel
-                if not channel_id in channel_id_dict:
-                    channel_id_dict[channel_id] = []
-                channel_id_dict[channel_id].append(channel_item)
                 pass
             elif type == 'comment':
                 yt_item = yt_item['contentDetails']['comment']['resourceId']
                 yt_kind = yt_item['kind']
                 if yt_kind == 'youtube#channel':
-                    channel_id = yt_item['channelId']
-                    title = snippet['title']
-                    image = snippet.get('thumbnails', {}).get('medium', {}).get('url', '')
-
-                    channel_item = items.DirectoryItem(title,
-                                                       context.create_uri(['channel', channel_id]),
-                                                       image=image)
-                    channel_item.set_fanart(provider.get_fanart(context))
-
-                    # subscribe to the channel
-                    if provider.is_logged_in():
-                        context_menu = []
-                        yt_context_menu.append_subscribe_to_channel(context_menu, provider, context, channel_id)
-                        channel_item.set_context_menu(context_menu)
-                        pass
-
-                    result.append(channel_item)
-
-                    # map channel
-                    if not channel_id in channel_id_dict:
-                        channel_id_dict[channel_id] = []
-                    channel_id_dict[channel_id].append(channel_item)
                     pass
                 elif yt_kind == 'youtube#video':
                     video_id = yt_item['videoId']
@@ -378,8 +281,11 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
@@ -394,8 +300,11 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
@@ -410,8 +319,11 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
@@ -426,8 +338,11 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
@@ -442,8 +357,11 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
@@ -451,67 +369,8 @@ def _process_list_response(provider, context, json_data):
                 yt_item = yt_item['contentDetails']['social']['resourceId']
                 yt_kind = yt_item['kind']
                 if yt_kind == 'youtube#channel':
-                    channel_id = yt_item['channelId']
-                    title = snippet['title']
-                    image = snippet.get('thumbnails', {}).get('medium', {}).get('url', '')
-
-                    channel_item = items.DirectoryItem(title,
-                                                       context.create_uri(['channel', channel_id]),
-                                                       image=image)
-                    channel_item.set_fanart(provider.get_fanart(context))
-
-                    # subscribe to the channel
-                    if provider.is_logged_in():
-                        context_menu = []
-                        yt_context_menu.append_subscribe_to_channel(context_menu, provider, context, channel_id)
-                        channel_item.set_context_menu(context_menu)
-                        pass
-
-                    result.append(channel_item)
-
-                    # map channel
-                    if not channel_id in channel_id_dict:
-                        channel_id_dict[channel_id] = []
-                    channel_id_dict[channel_id].append(channel_item)
                     pass
                 elif yt_kind == 'youtube#playlist':
-                    playlist_id = yt_item['playlistId']
-                    title = snippet['title']
-                    image = snippet.get('thumbnails', {}).get('medium', {}).get('url', '')
-
-                    channel_id = snippet['channelId']
-                    # if the path directs to a playlist of our own, we correct the channel id to 'mine'
-                    if context.get_path() == '/channel/mine/playlists/':
-                        channel_id = 'mine'
-                        pass
-                    channel_name = snippet.get('channelTitle', '')
-                    playlist_item = items.DirectoryItem(title,
-                                                        context.create_uri(
-                                                            ['channel', channel_id, 'playlist', playlist_id]),
-                                                        image=image)
-                    playlist_item.set_fanart(provider.get_fanart(context))
-
-
-                    context_menu = []
-
-                    # play all videos of the playlist
-                    yt_context_menu.append_play_all_from_playlist(context_menu, provider, context, playlist_id)
-
-                    if provider.is_logged_in():
-                        # subscribe to the channel of the playlist
-                        yt_context_menu.append_subscribe_to_channel(context_menu, provider, context, channel_id,
-                                                                    channel_name)
-                        pass
-                    if len(context_menu) > 0:
-                        playlist_item.set_context_menu(context_menu)
-                        pass
-
-                    result.append(playlist_item)
-
-                    # map playlist to channel
-                    if not channel_id in channel_id_dict:
-                        channel_id_dict[channel_id] = []
-                    channel_id_dict[channel_id].append(playlist_item)
                     pass
                 elif yt_kind == 'youtube#video':
                     video_id = yt_item['videoId']
@@ -521,31 +380,15 @@ def _process_list_response(provider, context, json_data):
                                                  context.create_uri(['play'], {'video_id': video_id}),
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
-                    result.append(video_item)
-                    video_id_dict[video_id] = video_item
+                    # Need to make sure this isn't a duplicate.
+                    if video_item not in result:
+                        result.append(video_item)
+                    if video_id not in video_id_dict.keys():
+                        video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
                 pass
             elif type == 'subscription':
-                subscription_id = yt_item['id']
-                channel_id = yt_item['contentDetails']['resourceId']['channelId']
-                image = snippet.get('thumbnails', {}).get('high', {}).get('url', '')
-                playlist_item = items.DirectoryItem(snippet['title'],
-                                                    context.create_uri(['channel', channel_id]),
-                                                    image=image)
-                playlist_item.set_fanart(provider.get_fanart(context))
-
-                # unsubscribe from a channel
-                context_menu = []
-                yt_context_menu.append_unsubscribe_from_channel(context_menu, provider, context, subscription_id)
-                playlist_item.set_context_menu(context_menu)
-
-                result.append(playlist_item)
-
-                # map playlist to channel
-                if not channel_id in channel_id_dict:
-                    channel_id_dict[channel_id] = []
-                channel_id_dict[channel_id].append(playlist_item)
                 pass
             elif type == 'upload':
                 video_id = yt_item['contentDetails']['upload']['videoId']
@@ -555,8 +398,11 @@ def _process_list_response(provider, context, json_data):
                                              context.create_uri(['play'], {'video_id': video_id}),
                                              image=image)
                 video_item.set_fanart(provider.get_fanart(context))
-                result.append(video_item)
-                video_id_dict[video_id] = video_item
+                # Need to make sure this isn't a duplicate.
+                if video_item not in result:
+                    result.append(video_item)
+                if video_id not in video_id_dict.keys():
+                    video_id_dict[video_id] = video_item
                 pass
             else:
                 raise kodion.KodionException("Unknown activity '%s'" % type)
