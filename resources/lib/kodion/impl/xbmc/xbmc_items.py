@@ -25,7 +25,7 @@ def to_video_item(context, video_item):
 
     _info_labels = info_labels.create_from_item(context, video_item)
 
-    # This should work for all version of XBMC/KODI for now.
+    # This should work for all versions of XBMC/KODI.
     if 'duration' in _info_labels:
         duration = _info_labels['duration']
         del _info_labels['duration']
