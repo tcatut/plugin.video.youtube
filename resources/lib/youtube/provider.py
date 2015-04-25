@@ -64,7 +64,7 @@ class Provider(kodion.AbstractProvider):
                  'youtube.video.play_with': 30540,
                  'youtube.live': 30539,
                  'youtube.error.rtmpe_not_supported': 30542,
-                 'youtube.activities': 30548,}
+                 'youtube.activities': 30548}
 
     def __init__(self):
         kodion.AbstractProvider.__init__(self)
