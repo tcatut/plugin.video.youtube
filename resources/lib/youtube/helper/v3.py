@@ -259,9 +259,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -282,9 +281,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -301,9 +299,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -320,9 +317,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -339,9 +335,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -358,9 +353,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -381,9 +375,8 @@ def _process_list_response(provider, context, json_data):
                                                  image=image)
                     video_item.set_fanart(provider.get_fanart(context))
                     # Need to make sure this isn't a duplicate.
-                    if video_item not in result:
-                        result.append(video_item)
                     if video_id not in video_id_dict.keys():
+                        result.append(video_item)
                         video_id_dict[video_id] = video_item
                 else:
                     raise kodion.KodionException("Unknown kind '%s'" % yt_kind)
@@ -399,9 +392,8 @@ def _process_list_response(provider, context, json_data):
                                              image=image)
                 video_item.set_fanart(provider.get_fanart(context))
                 # Need to make sure this isn't a duplicate.
-                if video_item not in result:
-                    result.append(video_item)
                 if video_id not in video_id_dict.keys():
+                    result.append(video_item)
                     video_id_dict[video_id] = video_item
                 pass
             else:
