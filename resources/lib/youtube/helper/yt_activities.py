@@ -1,7 +1,7 @@
 __author__ = 'tcatut'
 
 from resources.lib import kodion
-from resources.lib.youtube.helper import v2, v3
+from resources.lib.youtube.helper import v3
 
 
 def _process_list(provider, context, re_match):
