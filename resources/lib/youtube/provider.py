@@ -13,7 +13,8 @@ from .youtube_exceptions import YouTubeException, LoginException
 
 
 class Provider(kodion.AbstractProvider):
-    LOCAL_MAP = {'youtube.channels': 30500,
+    LOCAL_MAP = {'youtube.activities': 30400,
+                 'youtube.channels': 30500,
                  'youtube.playlists': 30501,
                  'youtube.go_to_channel': 30502,
                  'youtube.subscriptions': 30504,
@@ -64,8 +65,6 @@ class Provider(kodion.AbstractProvider):
                  'youtube.video.play_with': 30540,
                  'youtube.video.more': 30548,
                  'youtube.live': 30539,
-                 'youtube.error.rtmpe_not_supported': 30542,
-                 'youtube.activities': 30548}
                  'youtube.error.no_video_streams_found': 30549,
                  'youtube.error.rtmpe_not_supported': 30542}
 
@@ -490,18 +489,6 @@ class Provider(kodion.AbstractProvider):
                 context.create_resource_path('media', 'new_uploads.png'))
             my_subscriptions_item.set_fanart(self.get_fanart(context))
             result.append(my_subscriptions_item)
-
-            # my subscription
-            """"
-            Deprecated v2 implementation
-
-            my_subscriptions_item = DirectoryItem(
-                '[B]' + context.localize(self.LOCAL_MAP['youtube.my_subscriptions']) + ' (OLD)[/B]',
-                context.create_uri(['special', 'new_uploaded_videos']),
-                context.create_resource_path('media', 'new_uploads.png'))
-            my_subscriptions_item.set_fanart(self.get_fanart(context))
-            result.append(my_subscriptions_item)
-            """
             pass
 
         if self.is_logged_in() and settings.get_bool('youtube.folder.activities.show', True):

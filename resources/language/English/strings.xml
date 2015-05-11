@@ -56,6 +56,7 @@
     <string id="30120">Clear</string>
 
     <!-- YouTube -->
+    <string id="30400">Recommended</string>
     <string id="30500">Channels</string>
     <string id="30501">Playlists</string>
     <string id="30502">Go to %s</string>
@@ -106,5 +107,4 @@
     <string id="30547">You must enable two applications so that YouTube is functioning properly.</string>
     <string id="30548">More...</string>
     <string id="30549">No videos streams found</string>
-    <string id="30548">Recommended</string>
 </strings>

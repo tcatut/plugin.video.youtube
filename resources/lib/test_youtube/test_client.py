@@ -90,6 +90,7 @@ class TestClient(unittest.TestCase):
 
     def test_popular_videos(self):
         client = YouTube(language='de-DE')
+
         json_data = client.get_popular_videos()
         pass
 
