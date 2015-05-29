@@ -10,6 +10,17 @@ import unittest
 class TestClient(unittest.TestCase):
     TEST_ACCESS_TOKEN = ''
 
+    def test_calc_next_page_token(self):
+        client = YouTube(access_token_tv=self.TEST_ACCESS_TOKEN)
+
+        token = client.calculate_next_page_token(7, 50)
+        for i in range(1, 50):
+            token = client.calculate_next_page_token(i, 50)
+            print 'Page=%d token=%s' % (i, token)
+            pass
+
+        pass
+
     def test_my_subscriptions_tv(self):
         client = YouTube(access_token_tv=self.TEST_ACCESS_TOKEN)
         json_data = client.get_my_subscriptions(page_token=None)
