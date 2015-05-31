@@ -25,7 +25,7 @@ class YouTube(LoginClient):
     def calculate_next_page_token(self, page, max_result):
         page -= 1
         low = 'AEIMQUYcgkosw048'
-        high = 'ABCDEFGHIJKLMNOP'  # QRSTUVWXYZ'
+        high = 'ABCDEFGHIJKLMNOP'
         len_low = len(low)
         len_high = len(high)
 
@@ -38,6 +38,7 @@ class YouTube(LoginClient):
             pass
         low_iteration = position % len_low
 
+        # at this position the iteration starts with 'I' again (after 'P')
         if position >= 256:
             multiplier = (position // 128) - 1
             position -= 128 * multiplier
