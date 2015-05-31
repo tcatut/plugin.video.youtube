@@ -23,24 +23,27 @@ class YouTube(LoginClient):
         return self._country
 
     def calculate_next_page_token(self, page, max_result):
+        page -= 1
         low = 'AEIMQUYcgkosw048'
-        high = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        high = 'ABCDEFGHIJKLMNOP'  # QRSTUVWXYZ'
         len_low = len(low)
         len_high = len(high)
 
         position = page * max_result
 
         overflow_token = 'Q'
-        overflow = position // 128
-        if overflow >= 1:
-            overflow_token = high[overflow] + 'E'
+        if position >= 128:
+            overflow_token_iteration = position // 128
+            overflow_token = '%sE' % high[overflow_token_iteration]
             pass
-
         low_iteration = position % len_low
-        high_iteration = (position / len_low) % len_high
-        if overflow >= 2:
-            high_iteration -= 8
+
+        if position >= 256:
+            multiplier = (position // 128) - 1
+            position -= 128 * multiplier
             pass
+        high_iteration = (position / len_low) % len_high
+
         return 'C%s%s%sAA' % (high[high_iteration], low[low_iteration], overflow_token)
 
     def update_watch_history(self, video_id):

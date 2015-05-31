@@ -12,10 +12,10 @@ class TestClient(unittest.TestCase):
 
     def test_calc_next_page_token(self):
         """
-        client = YouTube(config=YouTube.CONFIGS['youtube-for-kodi-14-old'], items_per_page=1)
+        client = YouTube(config=YouTube.CONFIGS['youtube-for-kodi-14-old'], items_per_page=50)
         page_token = ''
         for i in range(0, 500):
-            json_data = client.get_playlist_items('UUzH549YlZhdhIqhtvz7XHmQ', page_token=page_token)
+            json_data = client.get_playlist_items('UUfwx98Wty7LhdlkxL5PZyLA', page_token=page_token)
             page_token = json_data.get('nextPageToken', '')
             if not page_token:
                 break
@@ -25,10 +25,9 @@ class TestClient(unittest.TestCase):
         """
 
 
-        client = YouTube(access_token_tv=self.TEST_ACCESS_TOKEN)
-
-        token = client.calculate_next_page_token(7, 50)
-        for i in range(0, 50):
+        client = YouTube()
+        token = client.calculate_next_page_token(2, 1)
+        for i in range(2, 50):
             token = client.calculate_next_page_token(i, 50)
             print 'Page=%d token=%s' % (i, token)
             pass
