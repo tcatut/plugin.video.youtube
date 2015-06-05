@@ -1,3 +1,8 @@
+5.1.6~beta2 (2015-06-05)
+ADD: Chinese (Traditional) (thx 2 beddfaf916)
+ADD: Czech (thx 2 tomaswcz)
+ADD: Romanian (thx 2 Danny3)
+
 5.1.6~beta1 (2015-06-03)
 UPD: test some new pagination for 'My Subscriptions'
 
