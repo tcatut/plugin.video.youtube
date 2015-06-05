@@ -1,3 +1,6 @@
+5.1.6~beta3 (2015-06-05)
+ADD: uri2addon test
+
 5.1.6~beta2 (2015-06-05)
 ADD: Chinese (Traditional) (thx 2 beddfaf916)
 ADD: Czech (thx 2 tomaswcz)
