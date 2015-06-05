@@ -221,6 +221,22 @@ class Provider(kodion.AbstractProvider):
 
         return False
 
+    @kodion.RegisterProviderPath('^/uri2addon/$')
+    def on_uri2addon(self, context, re_match):
+        uri = context.get_param('uri', '')
+        if not uri:
+            return False
+
+        resolver = UrlResolver(context)
+        res_url = resolver.resolve(uri)
+        url_converter = UrlToItemConverter(flatten=True)
+        url_converter.add_urls([res_url], self, context)
+        items = url_converter.get_items(self, context)
+        if len(items) > 0:
+            return items[0]
+
+        return False
+
     @kodion.RegisterProviderPath('^/playlist/(?P<playlist_id>.*)/$')
     def _on_playlist(self, context, re_match):
         self.set_content_type(context, kodion.constants.content_type.EPISODES)
