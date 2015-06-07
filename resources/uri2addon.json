@@ -1,0 +1,12 @@
+[
+  {
+    "pattern": "^(http(s)?://)?(www.)?youtube.com/watch\\?v=([a-zA-Z0-9]+)$",
+    "substitute": "plugin://plugin.video.youtube/play/?video_id=\\4"
+  },
+  {
+    "pattern": "(http(s)?://)?(www.)?youtube.com/watch"
+  },
+  {
+    "pattern": "(http(s)?://)?(www.)?youtu.be/(.+)"
+  }
+]

@@ -1,3 +1,6 @@
+5.1.6~beta3 (2015-06-07)
+ADD: further uri2addon test
+
 5.1.6~beta3 (2015-06-05)
 ADD: uri2addon test
 
