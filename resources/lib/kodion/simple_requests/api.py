@@ -1,11 +1,12 @@
-import json as real_json
-
 __author__ = 'bromix'
 
 import urllib
 import urllib2
 from StringIO import StringIO
 import gzip
+
+import json as real_json
+from ..utils import to_unicode
 
 
 class ErrorHandler(urllib2.HTTPDefaultErrorHandler):
@@ -121,7 +122,7 @@ def _request(method, url,
 
             # encode each value
             for key in data:
-                data[key] = unicode(data[key]).encode('utf-8')
+                data[key] = to_unicode(data[key]).encode('utf-8')
                 pass
 
             # urlencode
