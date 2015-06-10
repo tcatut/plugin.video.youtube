@@ -1,4 +1,4 @@
-5.1.6~beta5 (2015-06-09)
+5.1.6~beta6 (2015-06-10)
 FIX: unicode/utf-8 trouble in kodion
 
 5.1.6~beta4 (2015-06-07)

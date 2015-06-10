@@ -6,7 +6,7 @@ from StringIO import StringIO
 import gzip
 
 import json as real_json
-from ..utils import to_unicode
+from ..utils import to_utf8
 
 
 class ErrorHandler(urllib2.HTTPDefaultErrorHandler):
@@ -122,7 +122,7 @@ def _request(method, url,
 
             # encode each value
             for key in data:
-                data[key] = to_unicode(data[key]).encode('utf-8')
+                data[key] = to_utf8(data[key])
                 pass
 
             # urlencode

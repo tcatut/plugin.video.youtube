@@ -123,7 +123,7 @@ class AbstractContext(object):
                     params[param] = str(params[param])
                     pass
 
-                uri_params[param] = to_unicode(params[param]).encode('utf-8')
+                uri_params[param] = to_utf8(params[param])
                 pass
             uri += '?' + urllib.urlencode(uri_params)
             pass
