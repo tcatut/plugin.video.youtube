@@ -1,10 +1,10 @@
-from resources.lib import kodion
-from resources.lib.youtube.client import YouTube
-from resources.lib.youtube.helper.video_info import VideoInfo
-
 __author__ = 'bromix'
 
 import unittest
+
+from resources.lib import kodion
+from resources.lib.youtube.client import YouTube
+from resources.lib.youtube.helper.video_info import VideoInfo
 
 
 class TestClient(unittest.TestCase):
@@ -191,6 +191,9 @@ class TestClient(unittest.TestCase):
         client = YouTube()
 
         context = kodion.Context()
+
+        # FLASH?
+        streams = client.get_video_streams(context, 'zyg0WUsY9HI')
 
         # VEVO
         streams = client.get_video_streams(context, 'nfWlot6h_JM')
