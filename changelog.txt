@@ -1,20 +1,11 @@
-5.1.6~beta6 (2015-06-10)
-UPD: Polish (thx 2 Etharr)
-FIX: unicode/utf-8 trouble in kodion
-
-5.1.6~beta4 (2015-06-07)
-ADD: further uri2addon test
-
-5.1.6~beta3 (2015-06-05)
-ADD: uri2addon test
-
-5.1.6~beta2 (2015-06-05)
+5.1.6 (2015-06-14)
 ADD: Chinese (Traditional) (thx 2 beddfaf916)
 ADD: Czech (thx 2 tomaswcz)
 ADD: Romanian (thx 2 Danny3)
-
-5.1.6~beta1 (2015-06-03)
 UPD: test some new pagination for 'My Subscriptions'
+UPD: Polish (thx 2 Etharr)
+FIX: show notification again for unsupported rtmpe streams
+FIX: unicode/utf-8 trouble in kodion
 
 5.1.5 (2015-05-29)
 UPD: remove deprecation warning for Isengard
