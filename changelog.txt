@@ -1,3 +1,6 @@
+5.1.7~beta1 (2015-06-28)
+ADD: quota optimization via separate key for none-token depended API calls
+
 5.1.6 (2015-06-14)
 ADD: Chinese (Traditional) (thx 2 beddfaf916)
 ADD: Czech (thx 2 tomaswcz)

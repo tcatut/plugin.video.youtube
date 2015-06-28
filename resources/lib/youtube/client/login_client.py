@@ -15,7 +15,16 @@ class LoginClient(object):
             'id': '861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com',
             'secret': 'SboVhoG9s0rNafixCSGGKXAT'
         },
+        # API KEY for search and channel infos. These should work most of the time without login to safe some quota
+        'youtube-for-kodi-quota': {
+            'token-allowed': False,
+            'system': 'All',
+            'key': 'AIzaSyD3QFB39f2qM98LNGBhhDwTY9c_Cq8DnU0',
+            'id': '823592248707-ohltioksh3de1rpvie4heeo9s4mk44eb.apps.googleusercontent.com',
+            'secret': 'kJV6mjhicmeea1mVh1Aj0AFe'
+        },
         'youtube-for-kodi-fallback': {
+            'token-allowed': False,
             'system': 'Fallback!',
             'key': 'AIzaSyD8q0h3GWdMQp4yGTeF07udY8weR25Bw54',
             'id': '360604876433-t7hqkh8ma2oem13ftat6at6oodrg17mq.apps.googleusercontent.com',
@@ -32,13 +41,6 @@ class LoginClient(object):
             'key': 'AIzaSyC9MT7g2aqkrsKQraHR2H0V7ozC6dpfBCk',
             'id': '548159037694-qpi2u8ic4ubm8jukcnluercra0n4gu12.apps.googleusercontent.com',
             'secret': 'iRq-c2O8K5qiysMGyAlDH5sJ'
-        },
-        # OLD API KEY - THANKS TO THE JERK FOR HIJACKING THE KEY AND DRAINING THE QUOTA!
-        'youtube-for-kodi-14-old': {
-            'system': 'Helix',
-            'key': 'AIzaSyBCwBLShUEzXiOceNuliClY0icE6M4AddU',
-            'id': '308268426735-ph3ukr2flbaila2jt73b329724mpar0g.apps.googleusercontent.com',
-            'secret': '3m2krCjOT16wxgwErsAglOaS'
         },
         'youtube-for-kodi-14': {
             'system': 'Helix',
