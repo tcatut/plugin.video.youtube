@@ -344,6 +344,9 @@ def _process_list_response(provider, context, json_data):
 
 def response_to_items(provider, context, json_data, sort=None, reverse_sort=False, process_next_page=True):
     result = []
+    # This could be an error response; such as Invalid Credentials.
+    if not handle_error(provider, context, json_data):
+        return result
 
     kind = json_data.get('kind', '')
     if kind == u'youtube#searchListResponse' or kind == u'youtube#playlistItemListResponse' or \
