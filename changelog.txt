@@ -1,3 +1,6 @@
+5.1.7~beta2 (2015-07-05)
+FIX: 'Next Page (X)' item was added to the current playlist for playback
+
 5.1.7~beta1 (2015-06-28)
 ADD: quota optimization via separate key for none-token depended API calls
 
