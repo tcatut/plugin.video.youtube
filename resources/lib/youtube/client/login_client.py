@@ -53,6 +53,12 @@ class LoginClient(object):
             'key': 'AIzaSyBAdxZCHbeJwnQ7dDZQJNfcaF46MdqJ24E',
             'id': '988476436049-l9sfcivj4jtm1f2ppcvvbgsli6kvtis0.apps.googleusercontent.com',
             'secret': '_BEENv-a3-egDz_QKo5pGZCK'
+        },
+        'youtube-for-kodi-16': {
+            'system': 'J...',
+            'key': 'AIzaSyBbgC4PZ2_hUdqqX7MIgdg2fK1nohv1jrw',
+            'id': '17932591024-8jruv1v7s78gipo7s17c91bnk26rqgpf.apps.googleusercontent.com',
+            'secret': 'bK9T234WWhqzYdcQLif1L35K'
         }
     }
 
