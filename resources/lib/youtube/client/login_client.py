@@ -50,9 +50,9 @@ class LoginClient(object):
         },
         'youtube-for-kodi-15': {
             'system': 'Isengard',
-            'key': 'AIzaSyAFm5cTVZFF0xjR8EJVTHEB15YbAVITgeM',
-            'id': '1032651798584-usob8et5hntg1qsp939qn2aqjhhop88h.apps.googleusercontent.com',
-            'secret': 'MIHwphxCpPC0Nqb73SYLBQsA'
+            'key': 'AIzaSyBAdxZCHbeJwnQ7dDZQJNfcaF46MdqJ24E',
+            'id': '988476436049-l9sfcivj4jtm1f2ppcvvbgsli6kvtis0.apps.googleusercontent.com',
+            'secret': '_BEENv-a3-egDz_QKo5pGZCK'
         }
     }
 
