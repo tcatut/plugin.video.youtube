@@ -26,9 +26,9 @@ class LoginClient(object):
         'youtube-for-kodi-fallback': {
             'token-allowed': False,
             'system': 'Fallback!',
-            'key': 'AIzaSyD8q0h3GWdMQp4yGTeF07udY8weR25Bw54',
-            'id': '360604876433-t7hqkh8ma2oem13ftat6at6oodrg17mq.apps.googleusercontent.com',
-            'secret': 'ULXZaeSKIjBnxq42WeiZeNky'
+            'key': 'AIzaSyBEvxICg_E5g8mfndYjWHH4WEDF2fN_zXM',
+            'id': '705000440035-f7v8mhn75udt6l20r75ko7f15c39ns1c.apps.googleusercontent.com',
+            'secret': 'XeLKD8o_mdzEBDy9Nw5KMKbr'
         },
         'youtube-for-kodi-12': {
             'system': 'Frodo',
