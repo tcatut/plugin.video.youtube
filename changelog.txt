@@ -1,3 +1,6 @@
+5.1.7~beta3 (2015-07-10)
+UPD: new login semantic to sign out if someone upgrades to a newer version of KODI
+
 5.1.7~beta2 (2015-07-05)
 FIX: 'Next Page (X)' item was added to the current playlist for playback
 
