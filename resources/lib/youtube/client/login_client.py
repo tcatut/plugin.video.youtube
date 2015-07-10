@@ -32,15 +32,15 @@ class LoginClient(object):
         },
         'youtube-for-kodi-12': {
             'system': 'Frodo',
-            'key': 'AIzaSyCE2-kHR9zjtqEkA2QPNYmLap063A6Dr98',
-            'id': '530038341143-et4ksm2fjqj5p3vpdpjglemetlqqmd0r.apps.googleusercontent.com',
-            'secret': 'wdAtNLPOz-Tn2WjtCLIva9Vw'
+            'key': 'AIzaSyB6-pMlWO_XmgdM15VKGeLH4QsipdToBas',
+            'id': '131835494776-s0ef9jorci9vl0kaa5sqslupqvlku6ej.apps.googleusercontent.com',
+            'secret': 'Fz9nnfVGoH6jiLc0iefvzZYM'
         },
         'youtube-for-kodi-13': {
             'system': 'Gotham',
-            'key': 'AIzaSyC9MT7g2aqkrsKQraHR2H0V7ozC6dpfBCk',
-            'id': '548159037694-qpi2u8ic4ubm8jukcnluercra0n4gu12.apps.googleusercontent.com',
-            'secret': 'iRq-c2O8K5qiysMGyAlDH5sJ'
+            'key': 'AIzaSyB6-pMlWO_XmgdM15VKGeLH4QsipdToBas',
+            'id': '131835494776-s0ef9jorci9vl0kaa5sqslupqvlku6ej.apps.googleusercontent.com',
+            'secret': 'Fz9nnfVGoH6jiLc0iefvzZYM'
         },
         'youtube-for-kodi-14': {
             'system': 'Helix',
