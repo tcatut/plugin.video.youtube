@@ -19,9 +19,9 @@ class LoginClient(object):
         'youtube-for-kodi-quota': {
             'token-allowed': False,
             'system': 'All',
-            'key': 'AIzaSyD3QFB39f2qM98LNGBhhDwTY9c_Cq8DnU0',
-            'id': '823592248707-ohltioksh3de1rpvie4heeo9s4mk44eb.apps.googleusercontent.com',
-            'secret': 'kJV6mjhicmeea1mVh1Aj0AFe'
+            'key': 'AIzaSyA7v1QOHz8Q4my5J8uGSpr0zRrntRjnMmk',
+            'id': '597640352045-7um2gr1v5rgobm5bf07ebesm3er48286.apps.googleusercontent.com',
+            'secret': 'VmyQ12KkJ_N3yegu4Y-VGCXd'
         },
         'youtube-for-kodi-fallback': {
             'token-allowed': False,
