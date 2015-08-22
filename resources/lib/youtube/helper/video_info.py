@@ -21,6 +21,7 @@ class VideoInfo(object):
               'video': {'height': 270, 'encoding': 'h.263'},
               'audio': {'bitrate': 64, 'encoding': 'mp3'}},
         '13': {'container': '3gp',  # Discontinued
+               'discontinued': True,
                'video': {'encoding': 'mpeg-4'},
                'audio': {'encoding': 'aac'}},
         '17': {'container': '3gp',
@@ -411,8 +412,15 @@ class VideoInfo(object):
 
                         itag = attr['itag']
                         yt_format = self.FORMAT.get(itag, None)
+
                         if not yt_format:
                             raise Exception('unknown yt_format for itag "%s"' % itag)
+
+                        # this format is discontinued
+                        if yt_format.get('discontinued', False):
+                            continue
+                            pass
+
                         video_stream = {'url': url}
                         video_stream.update(yt_format)
 
