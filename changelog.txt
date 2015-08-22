@@ -1,3 +1,5 @@
+5.1.8~beta1 (2015-08-22)
+
 5.1.7 (2015-07-15)
 ADD: quota optimization via separate key for none-token depended API calls
 UPD: new login semantic to sign out if someone upgrades to a newer version of KODI
