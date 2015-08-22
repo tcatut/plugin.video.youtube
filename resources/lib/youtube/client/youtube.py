@@ -357,7 +357,7 @@ class YouTube(LoginClient):
         else:
             params['mine'] = 'true'
             pass
-        return self._perform_v3_request(method='GET', path='channels', params=params)
+        return self._perform_v3_request(method='GET', path='channels', params=params, quota_optimized=False)
 
     def get_disliked_videos(self, page_token=''):
         # prepare page token

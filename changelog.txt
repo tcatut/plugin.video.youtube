@@ -1,3 +1,6 @@
+5.1.8~beta2 (2015-08-22)
+[fix] personal playlists (Watch Later, Liked Video, ...) should work again
+
 5.1.8~beta1 (2015-08-22)
 [upd] new quota shaping
 [fix] playback of VEVO videos - some videos still using discontinued ITAG13
