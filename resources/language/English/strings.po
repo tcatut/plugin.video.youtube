@@ -237,6 +237,10 @@ msgstr ""
 #YouTube
 #empty strings from id 30121 to 30499
 
+msgctxt "#30400"
+msgid "Recommended"
+msgstr ""
+
 msgctxt "#30500"
 msgid "Channels"
 msgstr ""
